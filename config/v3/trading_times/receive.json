@@ -11,7 +11,82 @@
         "trading_times": {
             "title": "trading_times",
             "description": "The trading times structure is a hierarchy as follows: Market -> SubMarket -> Underlyings",
-            "type": "object"
+            "type": "object",
+            "required": [
+                "markets"
+            ],
+            "properties": {
+                "markets": {
+                    "description": "Market Array",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "name"
+                        ],
+                        "properties": {
+                            "name": {
+                                "description": "market name",
+                                "type": "string"
+                            },
+                            "submerkets": {
+                                "description": "Submarket Array",
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "name"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "description": "submarket name",
+                                            "type": "string"
+                                        },
+                                        "symbols": {
+                                            "description": "Symbols Array",
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "required": [
+                                                    "name",
+                                                    "symbol"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "description": "symbol name",
+                                                        "type": "string"
+                                                    },
+                                                    "symbol": {
+                                                        "description": "symbol shortcode",
+                                                        "type": "string"
+                                                    },
+                                                    "times": {
+                                                        "description": "open, close and settlement times",
+                                                        "type": "object"
+                                                    },
+                                                    "events": {
+                                                        "description": "events",
+                                                        "type": "array"
+                                                    },
+                                                    "trading_days": {
+                                                        "description": "trading days",
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "sun_thru_thu",
+                                                            "weekdays",
+                                                            "everyday"
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "echo_req": {
             "description": "Echo of the request made.",
